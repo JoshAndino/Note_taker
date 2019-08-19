@@ -1,0 +1,47 @@
+<h1>
+    Welcome to Notes
+</h1>
+
+    <ul>
+        {{#each notes}}
+        <a href="/{{this.id}}">
+        <li class= "note" data-noteid="{{this.id}}">
+
+         <h2>
+            {{this.title}}
+         </h2>
+
+         <p>{{this.body}}</p>
+
+         <button type="button" id="delete">Delete this note!</button>
+        </li>
+        </a>
+        {{/each}}
+  
+  </ul>
+
+  <form id= "create-form">
+      <input type="text" name="label">
+      <input type="text" name="body">
+    <button type="submit" id="create"> Create a new note!</button> 
+  </form>
+
+<script>
+$(document).ready(function(){
+ $("#form").on("submit",function(event){
+     event.preventDefault()
+     var newNote ={
+         title:$("#create-form [name=label]").val(),
+         body:$("#create-form [name=body]").val()
+     }
+     $.ajax("/new",{
+         type:"POST",
+         data:newNote
+     })
+     .then(function(){
+         console.log("Note has been added!");
+         location.reload()
+     })
+     
+})
+</script>
