@@ -13,7 +13,6 @@
 
          <p>{{this.body}}</p>
 
-         <button type="button" id="delete">Delete this note!</button>
         </li>
         </a>
         {{/each}}
@@ -27,6 +26,7 @@
   </form>
 
 <script>
+    
 $(document).ready(function(){
  $("#form").on("submit",function(event){
      event.preventDefault()
