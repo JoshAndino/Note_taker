@@ -1,6 +1,5 @@
 USE notetaker_db;
-
-INSERT INTO notes (title, body)
+INSERT INTO notes (title ,body)
 VALUES
   ("Walt Disney", "“The way get started is to quit talking and begin doing.”"),
   ("Dr. Seuss", "Congratulations! Today is your day!"),

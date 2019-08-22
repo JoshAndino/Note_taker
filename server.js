@@ -1,4 +1,3 @@
-var mysql = require("mysql");
 var connection = require("./connection");
 var express = require("express");
 var exphbs = require("express-handlebars");
@@ -22,17 +21,15 @@ app.get("/", function(req, res) {
   });
 });
 
-app.post("/new", function(req, res) {
+app.post("/", function(req, res) {
   connection.query(
     "INSERT INTO notes (title,body) VALUES (?,?)",
-    [req.body.title, req.body.text],
-    function(err, result) {
+    [req.body.title, req.body.body],
+    function(err, res) {
       if (err) {
         throw err;
       }
-      function newValue() {}
-
-      res.redirect("/");
+      // res.render("index");
     }
   );
 });

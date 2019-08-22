@@ -4,7 +4,8 @@
 
     <ul>
         {{#each notes}}
-        <a href="/{{this.id}}">
+        {{!-- fix this a --}}
+        {{!-- <a href="/{{this.id}}"> --}}
         <li class= "note" data-noteid="{{this.id}}">
 
          <h2>
@@ -20,28 +21,35 @@
   </ul>
 
   <form id= "create-form">
-      <input type="text" name="label">
-      <input type="text" name="body">
-    <button type="submit" id="create"> Create a new note!</button> 
+      <input type="text" name="label" class="title">
+      <input type="text" name="body" class="body2">
+    <button type="submit"id="create"> Create a new note!</button> 
   </form>
 
 <script>
     
 $(document).ready(function(){
- $("#form").on("submit",function(event){
+ $("#create").on("click",function(event){
      event.preventDefault()
      var newNote ={
-         title:$("#create-form [name=label]").val(),
-         body:$("#create-form [name=body]").val()
+         title:$(".title").val(),
+         body:$(".body2").val()
      }
-     $.ajax("/new",{
+
+     console.log(newNote);
+     $.ajax("/",{
          type:"POST",
-         data:newNote
+         data: newNote
      })
      .then(function(){
          console.log("Note has been added!");
-         location.reload()
+         
      })
-     
+    $.ajax("/",{
+        type:"GET",
+    }).then(function(){
+        console.log("you went through here")
+    })
+ })
 })
 </script>
